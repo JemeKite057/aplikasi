@@ -40,10 +40,10 @@ if page == "Edit Data":
 
         with st.expander(f'a.n. {patient_name_lama}'):
             with st.form(f'data-{id}'):
-                doctor_name_baru = st.selectbox("doctor_name", list_doctor, list_doctor.index(doctor_name_lama))
+                doctor_name_baru = st.text_input("doctor_name", list_doctor, doctor_name_lama)
                 patient_name_baru = st.text_input("patient_name", patient_name_lama)
                 gender_baru = st.selectbox("gender", list_symptom, list_symptom.index(gender_lama))
-                symptom_baru = st.multiselect("symptom", ['cough', 'flu', 'headache', 'stomache'], eval(symptom_lama))
+                symptom_baru = st.text_input("symptom", symptom_lama)
                 handphone_baru = st.text_input("handphone", handphone_lama)
                 address_baru = st.text_input("address", address_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
