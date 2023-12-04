@@ -40,10 +40,10 @@ if page == "Edit Data":
 
         with st.expander(f'a.n. {patient_name_lama}'):
             with st.form(f'data-{id}'):
-                doctor_name_baru = st.text_input("doctor_name", list_doctor, doctor_name_lama)
+                doctor_name_baru = st.selectbox("doctor_name", list_doctor, list_doctor.index(doctor_name_lama))
                 patient_name_baru = st.text_input("patient_name", patient_name_lama)
                 gender_baru = st.selectbox("gender", list_symptom, list_symptom.index(gender_lama))
-                symptom_baru = st.text_input("symptom", symptom_lama)
+                symptom_baru = st.multiselect("symptom", ['cough', 'flu', 'headache', 'stomache'], eval(symptom_lama))
                 handphone_baru = st.text_input("handphone", handphone_lama)
                 address_baru = st.text_input("address", address_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
@@ -58,7 +58,7 @@ if page == "Edit Data":
                                           SET doctor_name=:1, patient_name=:2, gender=:3, symptom=:4, \
                                           handphone=:5, address=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
-                            session.execute(query, {'1':doctor_name_baru, '2':patient_name_baru, '3':gender_baru, '4':symptom_baru, 
+                            session.execute(query, {'1':doctor_name_baru, '2':patient_name_baru, '3':gender_baru, '4':str(symptom_baru), 
                                                     '5':handphone_baru, '6':address_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
